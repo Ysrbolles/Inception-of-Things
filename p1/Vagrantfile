@@ -1,0 +1,29 @@
+Vagrant.configure("2") do |config|
+
+	config.vm.box = "centos/7"
+	config.vbguest.installer_options = { allow_kernel_upgrade: true }
+# if Vagrant.has_plugin?("vagrant-vbguest")
+# config.vbguest.auto_update = false
+#     end
+	config.vm.define "ybollesS" do |control|
+		control.vm.hostname = "ybollesS"
+		control.vm.network :public_network, ip: "192.168.42.110"
+		control.vm.synced_folder "./shared", "/vagrant_shared", owner: "root", group: "root"
+		control.vm.provider "virtualbox" do |vb|
+			vb.customize ["modifyvm", :id, "--name", "ybollesS"]
+			vb.customize ["modifyvm", :id, "--memory", "1024"]
+			vb.customize ["modifyvm", :id, "--cpus", "1"]
+		control.vm.provision "shell", path: "./Scripts/ybollesS.sh"
+		end
+	end
+	config.vm.define "ybollesSW" do |control|
+		control.vm.hostname = "ybollesSW"
+		control.vm.network :public_network, ip: "192.168.42.111"
+		control.vm.provider "virtualbox" do |vb|
+			vb.customize ["modifyvm", :id, "--name", "ybollesSW"]
+			vb.customize ["modifyvm", :id, "--memory", "1024"]
+			vb.customize ["modifyvm", :id, "--cpus", "1"]
+		end
+			control.vm.provision "shell", path: "./Scripts/ybollesSW.sh"
+	end
+end
