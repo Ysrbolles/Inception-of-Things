@@ -1,1 +1,0 @@
-{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/goinfre/ybolles/Inception-of-Things/p1","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}},"virtualbox":{"/vagrant_shared":{"guestpath":"/vagrant_shared","hostpath":"/goinfre/ybolles/Inception-of-Things/p1/shared","disabled":false,"__vagrantfile":true}}}
