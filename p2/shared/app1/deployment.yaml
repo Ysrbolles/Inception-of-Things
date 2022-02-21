@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app1
+  labels:
+    app: app1
 spec:
   replicas: 1
   selector:
@@ -13,10 +15,59 @@ spec:
         app: app1
     spec:
       containers:
-      - name: hello-kubernetes
-        image: paulbouwer/hello-kubernetes:1.10
+      - name: nginx
+        image: paulbouwer/hello-kubernetes:1.10.1
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         - name: MESSAGE
-          value: Hello from app1
+          value: Hello from app1.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1
+spec:
+  selector:
+    app: app1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+#apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: appone
+#   labels:
+#     app: appone
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       app: appone
+#   template:
+#     metadata:
+#       labels:
+#         app: appone
+#     spec:
+#       containers:
+#       - name: nginx
+#         image: paulbouwer/hello-kubernetes:1.10.1
+#         ports:
+#         - containerPort: 8080
+#         env:
+#         - name: MESSAGE
+#           value: Hello from app1.
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: appone
+# spec:
+#   selector:
+#     app: appone
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 8080
