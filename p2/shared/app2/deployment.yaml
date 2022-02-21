@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1
+  name: app2
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: app1
+      app: app2
   template:
     metadata:
       labels:
-        app: app1
+        app: app2
     spec:
       containers:
       - name: hello-kubernetes
@@ -19,4 +19,4 @@ spec:
         - containerPort: 80
         env:
         - name: MESSAGE
-          value: Hello from app1
+          value: Hello from app2

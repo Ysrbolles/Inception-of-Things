@@ -5,3 +5,8 @@ echo "Finished installing k3s"
 
 echo "Deploying app1"
 /usr/local/bin/kubectl apply -f /vagrant_shared/app1/
+/usr/local/bin/kubectl apply -f /vagrant_shared/app2/
+/usr/local/bin/kubectl apply -f /vagrant_shared/app3/
+/usr/local/bin/kubectl apply -f /vagrant_shared/services.yaml
+echo "Finished deploying app1"
+
